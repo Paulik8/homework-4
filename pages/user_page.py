@@ -6,7 +6,7 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 import constants
 from components.base_component import BaseComponent
 from components.user_component import UserForm
-from components.page import Page
+from pages.page import Page
 from constants import profiles
 
 

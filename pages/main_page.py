@@ -1,7 +1,7 @@
 from components.group_component import GroupComponent
 from components.main_up_toolbar import MainUpToolbar
 from components.main_vertical_list import MainVerticalList
-from components.page import Page
+from pages.page import Page
 from components.notification_component import NotificationComponent
 from constants import game
 import urlparse

@@ -2,10 +2,10 @@
 
 import unittest
 
-from test_mikegus import TestsMikeGus
-from tests import Tests
+#from test_mikegus import TestsMikeGus
+#from tests import Tests
 from tests_privacy import TestsPrivacy
-from test_johnkeats97 import TestsBaseSettings
+#from test_johnkeats97 import TestsBaseSettings
 
 
 if __name__ == '__main__':
@@ -13,9 +13,9 @@ if __name__ == '__main__':
     #suite2 = unittest.TestSuite((unittest.makeSuite(TestsMikeGus)))
     #suite3 = unittest.TestSuite((unittest.makeSuite(TestsPrivacy)))
     suite = unittest.TestSuite((
-        unittest.makeSuite(TestsMikeGus),
-        unittest.makeSuite(Tests),
+        #unittest.makeSuite(TestsMikeGus),
+        #unittest.makeSuite(Tests),
         unittest.makeSuite(TestsPrivacy),
-        unittest.makeSuite(TestsBaseSettings),
+        #unittest.makeSuite(TestsBaseSettings),
     ))
     result = unittest.TextTestRunner().run(suite)

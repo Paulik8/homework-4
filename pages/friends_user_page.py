@@ -1,5 +1,5 @@
 from components.friends_list import FriendsList
-from components.page import Page
+from pages.page import Page
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 

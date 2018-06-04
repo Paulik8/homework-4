@@ -6,7 +6,7 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 import constants
 from components.base_component import BaseComponent
 from components.photo_form import PhotoForm
-from components.page import Page
+from pages.page import Page
 from constants import profiles
 
 

@@ -6,7 +6,7 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 import constants
 from components.base_component import BaseComponent
 from components.group_form import GroupForm
-from components.page import Page
+from pages.page import Page
 from constants import profiles
 from components.group_component import GroupComponent
 from constants import dialog

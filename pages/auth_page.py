@@ -16,15 +16,15 @@ class AuthPage(Page):
 
     def logout(self):
         self.driver.get(self.LOGOUT_URL)
-        # self.auth_form.get_logout_bar().click()
-        # self.auth_form.get_logout_button().click()
-        # self.auth_form.get_confirm_logout_button().click()
 
-    def add_profile(self):
-        self.auth_form.get_add_profile_button().click()
+    # def add_profile(self):
+    #     self.auth_form.get_add_profile_button().click()
 
     def clear_inputs(self):
         self.auth_form.get_login().clear()
         self.auth_form.get_password().clear()
 
-    # def already_login(self):
+
+    def re_login(self, login, password):
+    	self.auth_form.get_add_profile_button().click()
+    	self.login(login, password)
