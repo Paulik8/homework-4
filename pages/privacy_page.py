@@ -12,8 +12,10 @@ class PrivacyPage(Page):
 
 	def radiobutton_click(self, name, value):
 		initial_checked_radiobutton = self.privacy_component.get_radiobutton_by_name_and_value(name, value)
-		if(privacy_page.is_cheked_element(initial_checked_radiobutton)):
-			if(initial_checked_radiobutton.get_attribute("value") == 0):
+		initial_name = initial_checked_radiobutton.get_attribute("name")
+		initial_value = initial_checked_radiobutton.get_attribute("value")
+		if initial_checked_radiobutton.get_attribute("checked") is not None:
+			if(value == self.privacy_component.ALL_USERS):
 				self.privacy_component.get_radiobutton_by_name_and_value(name, self.privacy_component.NO_ONE).click()
 			else:
 				self.privacy_component.get_radiobutton_by_name_and_value(name, self.privacy_component.ALL_USERS).click()
@@ -21,10 +23,11 @@ class PrivacyPage(Page):
 		else:
 			self.privacy_component.get_radiobutton_by_name_and_value(name, value).click()
 		self.click(self.save())
-		return initial_checked_radiobutton
+		return [initial_name, initial_value]
 
-	def set_radiobutton_initial_value(self, radiobutton):
-		if(self.is_cheked_element(radiobutton) == false):
+	def set_radiobutton_initial_value(self, name, value):
+		radiobutton = self.privacy_component.get_radiobutton_by_name_and_value("@name = '"+ name + "'", "@value = '"+ value + "'")
+		if radiobutton.get_attribute("checked") is None:
 			self.click(radiobutton)
  			self.click(self.save())
 
@@ -77,17 +80,16 @@ class PrivacyPage(Page):
 	def mark_in_topic_only_friends(self):
 		return self.radiobutton_click(self.privacy_component.MARK_IN_TOPIC, self.privacy_component.ONLY_FRIENDS)								
 
-	def set_radiobutton_by_value(self, name, value):
-		return self.privacy_component.get_radiobutton_by_name_and_value("@name = '"+ name + "'", "@value = '"+ value + "'")
 
 	def save(self):
 		return self.privacy_component.get_save_button()
 
-	def is_cheked_element(self, radiobutton):
+	def is_cheked_element(self, name, value):
+		radiobutton = self.privacy_component.get_radiobutton_by_name_and_value("@name = '"+ name + "'", "@value = '"+ value + "'")
 		if radiobutton.get_attribute("checked") is not None:
-			return true
+			return True
 		else:
-			return false
+			return False
 
 	def click(self, radiobutton):
 		self.driver.execute_script("arguments[0].click();", radiobutton)

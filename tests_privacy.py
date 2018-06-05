@@ -42,27 +42,27 @@ class TestsPrivacy(unittest.TestCase):
     def test_my_age_only_friends_radiobutton_clicked(self):
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        radiobutton = privacy_page.my_age_only_friends()
+        [name, value] = privacy_page.my_age_only_friends()
 
         privacy_page.open()
-        assertTrue(privacy_page.is_cheked_element(radiobutton))
+        self.assertTrue(privacy_page.is_cheked_element(name, value))
         
-        privacy_page.set_radiobutton_initial_value(radiobutton)
+        privacy_page.set_radiobutton_initial_value(name, value)
 
     def test_my_age_all_users_radiobutton_clicked(self):
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        radiobutton = privacy_page.my_age_all_users()
-
+        [name, value] = privacy_page.my_age_all_users()
+        
         privacy_page.open()
-        assertTrue(privacy_page.is_cheked_element(radiobutton))
+        self.assertTrue(privacy_page.is_cheked_element(name, value))
 
-        privacy_page.set_radiobutton_initial_value(radiobutton)
+        privacy_page.set_radiobutton_initial_value(name, value)
 
     def test_my_age_only_friends_chek_friends(self):
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        radiobutton = privacy_page.my_age_only_friends()
+        [name, value] = privacy_page.my_age_only_friends()
 
         user_test_page = UserPage(self.driver, profiles.PROFILE_URL_TECHNOPARK42)
         user_test_page.open()
@@ -89,13 +89,13 @@ class TestsPrivacy(unittest.TestCase):
 
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        privacy_page.set_radiobutton_initial_value(radiobutton)
+        privacy_page.set_radiobutton_initial_value(name, value)
 
 
     def test_my_age_only_friends_chek_all_users(self):
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        radiobutton = privacy_page.my_age_only_friends()
+        [name, value] = privacy_page.my_age_only_friends()
 
         user_test_page = UserPage(self.driver, profiles.PROFILE_URL_TECHNOPARK42)
         user_test_page.open()
@@ -118,13 +118,13 @@ class TestsPrivacy(unittest.TestCase):
 
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        privacy_page.set_radiobutton_initial_value(radiobutton)
+        privacy_page.set_radiobutton_initial_value(name, value)
 
 
     def test_my_age_all_users_chek_all_users(self):
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        radiobutton = privacy_page.my_age_all_users()
+        [name, value] = privacy_page.my_age_all_users()
 
         user_test_page = UserPage(self.driver, profiles.PROFILE_URL_TECHNOPARK42)
         user_test_page.open()
@@ -140,31 +140,31 @@ class TestsPrivacy(unittest.TestCase):
             user_test_page.del_friend()
         user_test_page.open()
         checked_age = user_test_page.age()
-        self.assertNotEqual(age[0], checked_age[0])
+        self.assertEqual(age[0], checked_age[0])
 
         auth_page.logout()
         auth_page.re_login(profiles.PROFILE_TECHNOPARK42, profiles.PROFILE_PASSWORD)
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        privacy_page.set_radiobutton_initial_value(radiobutton)
+        privacy_page.set_radiobutton_initial_value(name, value)
 
 
     def test_my_games_and_applications_only_friends_radiobutton_clicked(self):
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        radiobutton = privacy_page.my_games_and_applications_only_friends()
+        [name, value] = privacy_page.my_games_and_applications_only_friends()
 
         privacy_page.open()
-        assertTrue(privacy_page.is_cheked_element(radiobutton))
+        self.assertTrue(privacy_page.is_cheked_element(name, value))
 
-        privacy_page.set_radiobutton_initial_value(radiobutton)
+        privacy_page.set_radiobutton_initial_value(name, value)
 
 
 
     def test_my_games_and_applications_only_friends_chek_friends(self):
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        radiobutton = privacy_page.my_games_and_applications_only_friends()
+        [name, value] = privacy_page.my_games_and_applications_only_friends()
 
         game_page = GamePage(self.driver)
         game_page.open()
@@ -196,17 +196,18 @@ class TestsPrivacy(unittest.TestCase):
         game_page.game_delete()
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        privacy_page.set_radiobutton_initial_value(radiobutton)
+        privacy_page.set_radiobutton_initial_value(name, value)
 
 
     def test_my_games_and_applications_only_friends_chek_all_users(self):
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        radiobutton = privacy_page.my_games_and_applications_only_friends()
+        [name, value] = privacy_page.my_games_and_applications_only_friends()
 
         game_page = GamePage(self.driver)
         game_page.open()
 
+        auth_page = AuthPage(self.driver)
         auth_page.logout()
         auth_page.re_login(profiles.PROFILE_TECHNOPARK11, profiles.PROFILE_PASSWORD)
 
@@ -226,7 +227,7 @@ class TestsPrivacy(unittest.TestCase):
         game_page.game_delete()
         privacy_page = PrivacyPage(self.driver)
         privacy_page.open()
-        privacy_page.set_radiobutton_initial_value(radiobutton)
+        privacy_page.set_radiobutton_initial_value(name, value)
 
 
     # def test_my_games_and_applications_only_me(self):
