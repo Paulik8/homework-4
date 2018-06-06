@@ -1,6 +1,7 @@
 
 from pages.page import Page
 from components.privacy_component import PrivacyForm
+from selenium.common.exceptions import WebDriverException
 
 
 class PrivacyPage(Page):
@@ -15,13 +16,16 @@ class PrivacyPage(Page):
 		initial_name = initial_checked_radiobutton.get_attribute("name")
 		initial_value = initial_checked_radiobutton.get_attribute("value")
 		if initial_checked_radiobutton.get_attribute("checked") is not None:
-			if(value == self.privacy_component.ALL_USERS):
-				self.privacy_component.get_radiobutton_by_name_and_value(name, self.privacy_component.NO_ONE).click()
+			if(value == self.privacy_component.NO_ONE):
+				self.click(self.privacy_component.get_radiobutton_by_name_and_value(name, self.privacy_component.ONLY_FRIENDS))
 			else:
-				self.privacy_component.get_radiobutton_by_name_and_value(name, self.privacy_component.ALL_USERS).click()
-			self.privacy_component.get_radiobutton_by_name_and_value(name, value).click()
+				try:
+					self.click(self.privacy_component.get_radiobutton_by_name_and_value(name, self.privacy_component.NO_ONE))
+				except WebDriverException:
+					self.click(self.privacy_component.get_radiobutton_by_name_and_value(name, self.privacy_component.ALL_USERS))
+			self.click(self.privacy_component.get_radiobutton_by_name_and_value(name, value))
 		else:
-			self.privacy_component.get_radiobutton_by_name_and_value(name, value).click()
+			self.click(self.privacy_component.get_radiobutton_by_name_and_value(name, value))
 		self.click(self.save())
 		return [initial_name, initial_value]
 

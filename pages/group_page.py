@@ -21,7 +21,11 @@ class GroupPage(Page):
         self.group_form = GroupForm(self.driver)
 
     def group_add(self):
-        self.group_form.group_add().click()
+        if self.is_my_group() == True:
+            pass
+        else:
+            self.group_form.group_add().click()
+
 
     def group_delete(self):
         self.group_form.group_menu().click()
